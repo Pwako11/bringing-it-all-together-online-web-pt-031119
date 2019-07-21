@@ -27,7 +27,7 @@ class Dog
   
   
   def self.create(name:, breed:)
-    dog = Dog.new(name, breed)
+    dog = Dog.new(name: name, breed: breed)
     dog.save
     dog 
     
@@ -57,8 +57,6 @@ class Dog
   
   
   def save
-    dog =Dog.new
-    
     if self.id
       self.update
     else
@@ -70,7 +68,7 @@ class Dog
     DB[:conn].execute(sql, self.name, self.breed)
     @id = DB[:conn].execute("SELECT last_insert_rowid() FROM dogs")[0][0]
     end
-    dog
+    self
   end 
 
 
